@@ -100,6 +100,7 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
+   Clamp.set(true);
   Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
@@ -126,10 +127,10 @@ Brain.Screen.setFont(monoM);
 }
 
 if(AutoSelectorVal==3){
+   Clamp.set(true);
 
 Brain.Screen.setFillColor(black);
-
-    Brain.Screen.setFont(monoXL);
+   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("GOAL SIDE");
@@ -242,13 +243,13 @@ if(AutoSelectorVal==1)//Quali close 6 triball auto
 
 if(AutoSelectorVal==2)// awp mid steal
 {
-  test2();
+  test4();
 
 }
 
 if(AutoSelectorVal==3)// 5 Ball rush
 {
-  
+  test2();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
