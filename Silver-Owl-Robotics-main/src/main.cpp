@@ -100,7 +100,7 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
-   Clamp.set(true);
+  Clamp.set(true);
   Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
@@ -115,22 +115,21 @@ Brain.Screen.setFont(monoM);
 
 if(AutoSelectorVal==2){
 Brain.Screen.setFillColor(black);
-
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("MATCHLOAD");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("4HIGH3LONG");
+Brain.Screen.print("7Right");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
 
 if(AutoSelectorVal==3){
-   Clamp.set(true);
 
 Brain.Screen.setFillColor(black);
-   Brain.Screen.setFont(monoXL);
+
+    Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("GOAL SIDE");
@@ -236,23 +235,24 @@ void autonomous(void) {
     
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
-if(AutoSelectorVal==1)//Quali close 6 triball auto 
+if(AutoSelectorVal==1)//AWP
 {
-  test();
+  test();  
 }
 
-if(AutoSelectorVal==2)// awp mid steal
+if(AutoSelectorVal==2)// 7ball longgoal
 {
-  test4();
-
-}
-
-if(AutoSelectorVal==3)// 5 Ball rush
-{
+  Wings.set(true);
+  Clamp.set(true);
   test3();
+}
+
+if(AutoSelectorVal==3)// 4/3 Ball 2goals
+{
+  
 } 
 
-if(AutoSelectorVal==4)// Elim-Steal
+if(AutoSelectorVal==4)// ElimAuto
 {
 
   
@@ -266,13 +266,14 @@ if(AutoSelectorVal==5)// empty
 
 if(AutoSelectorVal==6)//AWP only
 {
-  test4();
+  //test4();
 }
 
 
 if(AutoSelectorVal==7)//temporary prog skills
 { 
- 
+Tilt.set(false);
+ testskills();
 
 }
 //MoveTimePID(TestPara, -100, 0.5,0.1,-40,true);//score 2nd triball
@@ -286,6 +287,12 @@ CStop();
 int RV;
 int LV;
 int DriveTask(void){
+  LF.setStopping(hold);
+LM.setStopping(hold);
+LB.setStopping(hold);
+RF.setStopping(hold);
+RM.setStopping(hold);
+RB.setStopping(hold);
   while(true)
   {
     EXIT=true;
@@ -310,7 +317,13 @@ int ATask(void)
     if (Controller1.ButtonR1.pressing()==1)
     {
       IntakeBoth(-100);
+      double Rpm = Roller.velocity(rpm);
+    if (Rpm<10)
+    {
+      RunSecondStage(100);
     }
+    }
+    
     else if (Controller1.ButtonL1.pressing()==1)
     {
       IntakeBoth(100);
@@ -343,16 +356,16 @@ int PTask(void)
     while(true)
     {
       //Toggles Tilt
-    if(XTaskActiv==0&&Controller1.ButtonLeft.pressing()&&ButtonPressingX==0)
+    if(XTaskActiv==0&&Controller1.ButtonDown.pressing()&&ButtonPressingX==0)
     {
       ButtonPressingX=1;
       XTaskActiv=1;
       Tilt.set(true);
     }
 
-    else if(!Controller1.ButtonLeft.pressing())ButtonPressingX=0;
+    else if(!Controller1.ButtonDown.pressing())ButtonPressingX=0;
 
-    else if(XTaskActiv==1&&Controller1.ButtonLeft.pressing()&&ButtonPressingX==0)
+    else if(XTaskActiv==1&&Controller1.ButtonDown.pressing()&&ButtonPressingX==0)
     {
       ButtonPressingX=1;
       XTaskActiv=0;
@@ -377,16 +390,16 @@ int PTask(void)
     }
     
       //Toggles Pusher
-    if(RightTaskActiv==0&&Controller1.ButtonRight.pressing()&&ButtonPressingRight==0)
+    if(RightTaskActiv==0&&Controller1.ButtonA.pressing()&&ButtonPressingRight==0)
     {
       ButtonPressingRight=1;
       RightTaskActiv=1;
       Wings.set(true);
     }
 
-    else if(!Controller1.ButtonRight.pressing())ButtonPressingRight=0;
+    else if(!Controller1.ButtonA.pressing())ButtonPressingRight=0;
 
-    else if(RightTaskActiv==1&&Controller1.ButtonRight.pressing()&&ButtonPressingRight==0)
+    else if(RightTaskActiv==1&&Controller1.ButtonA.pressing()&&ButtonPressingRight==0)
     {
       ButtonPressingRight=1;
       RightTaskActiv=0;
