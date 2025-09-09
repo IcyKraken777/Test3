@@ -16,14 +16,14 @@ void test() {
     RunSecondStage(-50);
     RunRoller(100);
     //TurnMaxTimePID(AngPara, -30, 0.5, true);
-    MoveEncoderPID(TestPara, 80,19, 0.5,-32,true);
-    MoveEncoderPID(TestPara, 30,15, 0.5,-30,true);
+    MoveEncoderPID(TestPara, 70,20, 0.5,-32,true);
+    MoveEncoderPID(TestPara, 40,16, 0.5,-30,true);
     //Move and score like 4...
     TurnMaxTimePID(AngPara, -135,0.3, true);
-    MoveEncoderPID(TestPara, 100,42, 0.5,-135,true);
+    MoveEncoderPID(TestPara, 100,45, 0.5,-135,true);
     IntakeBoth(0);
     TurnMaxTimePID(AngPara, 0,0.5, true);
-    MoveEncoderPID(TestPara, 100,24, 0.5,0,true);
+    MoveEncoderPID(TestPara, 100,26, 0.5,0,true);
     IntakeBoth(-100);
     wait(900,msec);
     RunRoller(-100);
@@ -33,24 +33,18 @@ void test() {
     //Matchload
     MoveEncoderPID(TestPara, -100,15, 0.5,0,true);
     Tilt.set(true);
-    TurnMaxTimePID(AngPara, 180,0.5, true);
+    TurnMaxTimePID(AngPara, 180,1.3, true);
     RunRoller(100);
-    MoveEncoderPID(TestPara, 100,24, 0.5,180,true);
-    wait(300,msec);
+    MoveEncoderPID(TestPara, 100,26, 0.5,180,true);
+    wait(200,msec);
     //Move back and score 3
     MoveEncoderPID(TestPara, -100,15, 0.5,180,true);
-    IntakeBoth(-60); 
+    IntakeBoth(-20); 
     Tilt.set(false);
-    TurnMaxTimePID(AngPara, 0,0.4, true);
-    MoveEncoderPID(TestPara, 100,16, 0.3,-5,true);
+    TurnMaxTimePID(AngPara, 0,1, true);
+    MoveEncoderPID(TestPara, 85,19, 0.3,-5,true);
     IntakeBoth(-100);
-    wait(1400,msec);
     //Gets back into supply so we can immediately start scoring
-    MoveEncoderPID(TestPara, -100,15, 0.5,0,true);
-    Tilt.set(true);
-    TurnMaxTimePID(AngPara, 180,0.2, true);
-    IntakeBoth(-100);
-    MoveEncoderPID(TestPara, 100,24, 0.3,180,false);
 }
 void test2(){
     //ignore this for now
@@ -92,48 +86,48 @@ void test2(){
 void test3(){
     // declare initial conditions
     //7ball Right
-    PIDDataSet TestPara={2.6,0.15,0.25};
-    PIDDataSet AngPara={2.3,0.1,0.25};
+    PIDDataSet TestPara={1.8,0.1,0.15};
+    PIDDataSet AngPara={1.9,0.1,0.2};
     //Collect 3 balls in L shape
-    Clamp.set(true);
-    RunSecondStage(-50);
-    RunRoller(100);
+    IntakeBoth(-100);
     //TurnMaxTimePID(AngPara, -30, 0.5, true);
-    MoveEncoderPID(TestPara, 80,19, 0.5,32,true);
-    MoveEncoderPID(TestPara, 30,15, 0.5,30,true);
+    MoveEncoderPID(TestPara, 80,19, 0.5,28,true);
+    MoveEncoderPID(TestPara, 30,13, 0.5,30,true);
     //Move and score like 4...
-    TurnMaxTimePID(AngPara, 135,0.3, true);
-    MoveEncoderPID(TestPara, 100,42, 0.5,135,true);
     IntakeBoth(0);
+    TurnMaxTimePID(AngPara, 135,0.3, true);
+    MoveEncoderPID(TestPara, 100,34, 0.7,135,true);
     TurnMaxTimePID(AngPara, 0,0.5, true);
     MoveEncoderPID(TestPara, 100,24, 0.5,0,true);
+    Wings.set(false);
     IntakeBoth(-100);
-    wait(900,msec);
+    wait(500,msec);
     RunRoller(-100);
     wait(100,msec);
     RunRoller(100);
-    wait(1100,msec);
+    wait(1200,msec);
     //Matchload
-    MoveEncoderPID(TestPara, -100,15, 0.5,0,true);
+    Wings.set(true);
+    MoveEncoderPID(TestPara, -100,15, 0.5,5,true);
     Tilt.set(true);
-    TurnMaxTimePID(AngPara, 180,0.5, true);
+    TurnMaxTimePID(AngPara, 185,1, true);
     RunRoller(100);
-    MoveEncoderPID(TestPara, 100,24, 0.5,180,true);
+    MoveEncoderPID(TestPara, 100,24, 0.5,185,true);
     wait(300,msec);
     //Move back and score 3
-    MoveEncoderPID(TestPara, -100,15, 0.5,180,true);
-    IntakeBoth(-60); 
+    MoveEncoderPID(TestPara, -100,15, 0.5,185,true);
+    IntakeBoth(-100); 
     Tilt.set(false);
     TurnMaxTimePID(AngPara, 0,0.4, true);
     MoveEncoderPID(TestPara, 100,16, 0.3,-5,true);
-    IntakeBoth(-100);
+    Wings.set(false);
     wait(1400,msec);
     //Gets back into supply so we can immediately start scoring
-    MoveEncoderPID(TestPara, -100,15, 0.5,0,true);
-    Tilt.set(true);
-    TurnMaxTimePID(AngPara, 180,0.2, true);
-    IntakeBoth(-100);
-    MoveEncoderPID(TestPara, 100,24, 0.3,180,false);
+    //MoveEncoderPID(TestPara, -100,15, 0.5,0,true);
+    //Tilt.set(true);
+    //TurnMaxTimePID(AngPara, 180,0.2, true);
+    //IntakeBoth(-100);
+    //MoveEncoderPID(TestPara, 100,24, 0.3,180,false);
 }
 void test4(){
     //Solo AWP
@@ -179,4 +173,31 @@ void test4(){
     IntakeBoth(-100);
     //
 */
+}
+void testskills(){
+    //Prog skills
+    PIDDataSet TestPara={2.6,0.15,0.25};
+    PIDDataSet AngPara={2.3,0.1,0.25};
+    Wings.set(true);
+    Clamp.set(true);
+    RunRoller(100);
+    MoveEncoderPID(TestPara, 40,34, 0.3,33,true);
+    wait(800,msec);
+    MoveEncoderPID(TestPara, 80,33, 0.3,140,true);
+    MoveEncoderPID(TestPara, 80,29, 0.3,0,true);
+    Wings.set(false);
+    IntakeBoth(-80);
+    wait(100,msec);
+    MoveEncoderPID(TestPara, -80,8, 0.3,0,true);
+    TurnMaxTimePID(AngPara, 180,0.4, true);
+    Tilt.set(true);
+    MoveEncoderPID(TestPara, 60,20, 0.3,180,true);
+
+    //For intaking RunRoller (Postive=intake Bottom stage)
+    // For Secondstage (negative = score top stage)
+    //IntakeBoth (negative = scoreboth);
+
+
+
+
 }
