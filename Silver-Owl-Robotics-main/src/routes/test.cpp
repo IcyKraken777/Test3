@@ -192,7 +192,10 @@ void testskills(){
     TurnMaxTimePID(AngPara, 180,0.4, true);
     Tilt.set(true);
     MoveEncoderPID(TestPara, 60,20, 0.3,180,true);
-
+    //Pneumatics:
+    //Clamp = Second stage lift (true is up)
+    //Tilt = Scrapper (true to matchload)
+    //Wings = gates (true to turn it on)
     //For intaking RunRoller (Postive=intake Bottom stage)
     // For Secondstage (negative = score top stage)
     //IntakeBoth (negative = scoreboth);
