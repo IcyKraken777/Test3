@@ -249,12 +249,12 @@ if(AutoSelectorVal==2)// 7ball longgoal
 
 if(AutoSelectorVal==3)// 4/3 Ball 2goals
 {
-  
+  test2();
 } 
 
-if(AutoSelectorVal==4)// ElimAuto
+if(AutoSelectorVal==4)// 4+3 Left
 {
-
+  test5();
   
 }
 
