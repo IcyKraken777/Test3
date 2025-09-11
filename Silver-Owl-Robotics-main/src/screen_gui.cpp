@@ -44,7 +44,7 @@ void DisplayWords(void)
   Brain.Screen.print("7 Ball");
 
   Brain.Screen.setCursor(7,3);
-  Brain.Screen.print("5 Ball");
+  Brain.Screen.print("4+3Right");
 
     Brain.Screen.setCursor(11,3);
   Brain.Screen.print("GS-AWP");
@@ -53,7 +53,7 @@ void DisplayWords(void)
   Brain.Screen.print("7Right");
 
   Brain.Screen.setCursor(7,40);
-  Brain.Screen.print("ELIM-STEAL");
+  Brain.Screen.print("4+3Left");
 
     Brain.Screen.setCursor(11,40);
   Brain.Screen.print("ML-AWP");
@@ -101,7 +101,7 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==2){
 Brain.Screen.drawRectangle(375,25,100,50);
     Brain.Screen.setCursor(3,40);
-  Brain.Screen.print("7Ball");
+  Brain.Screen.print("StealAWP");
 
 Brain.Screen.setFillColor(black);
 
