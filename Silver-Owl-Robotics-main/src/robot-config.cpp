@@ -24,7 +24,7 @@ digital_out Clamp = digital_out(Brain.ThreeWirePort.B);
 inertial Gyro = inertial(PORT1);
 //Naming convention: 
 // Important variables
-const double wheelDiam = 2.75;
+const double wheelDiam = 3.25;
 const double wheelToMotorRatio = 48.0/36;
 
 // VEXcode generated functions
