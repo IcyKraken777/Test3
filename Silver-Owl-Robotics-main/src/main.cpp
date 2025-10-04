@@ -237,7 +237,6 @@ void autonomous(void) {
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//9ball LEFT
 {
-  Lift.set(true);
   nineleft();  
 }
 
