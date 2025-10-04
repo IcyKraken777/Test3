@@ -37,8 +37,8 @@ bool SP;
 bool EXIT;
 void pre_auton(void) {
    EXIT=false;
-  Tilt.set(false);
-  Clamp.set(false);
+  Scrapper.set(false);
+  Lift.set(false);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
@@ -100,12 +100,12 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
-  Clamp.set(true);
+  Lift.set(true);
   Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("7LEFTLONG");
+Brain.Screen.print("9Left");
 Brain.Screen.setCursor(4,10);
 
 Brain.Screen.setFont(monoM);
@@ -118,9 +118,9 @@ Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("idk");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("7Right");
+Brain.Screen.print("6+3MAYNOTWORK");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -146,9 +146,9 @@ Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("9Ball");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Elim-Steal");
+Brain.Screen.print("Right");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
@@ -174,9 +174,9 @@ if(AutoSelectorVal==6){
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("AWP");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("ONLY AWP");
+Brain.Screen.print("AWP");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
@@ -235,44 +235,45 @@ void autonomous(void) {
     
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
-if(AutoSelectorVal==1)//AWP
+if(AutoSelectorVal==1)//9ball LEFT
 {
-  test();  
+  Lift.set(true);
+  nineleft();  
 }
 
-if(AutoSelectorVal==2)// 7ball longgoal
+if(AutoSelectorVal==2) // If Time 6+3
 {
-  Wings.set(true);
-  Clamp.set(true);
-  test3();
+  
 }
 
-if(AutoSelectorVal==3)// 4/3 Ball 2goals
+if(AutoSelectorVal==3)//Unimportant
 {
-  test2();
+  
 } 
 
-if(AutoSelectorVal==4)// 4+3 Left
+if(AutoSelectorVal==4)//9ball RIGHT
 {
-  test5();
+  Wings.set(true);
+  Lift.set(true);
+  nineright();
   
 }
 
 if(AutoSelectorVal==5)// empty
 {
-   //test();
+   //ninetest();
 }
 
 
 if(AutoSelectorVal==6)//AWP only
 {
-  //test4();
+  AWP();
 }
 
 
-if(AutoSelectorVal==7)//temporary prog skills
+if(AutoSelectorVal==7)//Skills
 { 
-Tilt.set(false);
+Scrapper.set(false);
  testskills();
 
 }
@@ -288,13 +289,14 @@ int RV;
 int LV;
 int DriveTask(void){
   LF.setStopping(hold);
-LM.setStopping(hold);
-LB.setStopping(hold);
-RF.setStopping(hold);
-RM.setStopping(hold);
-RB.setStopping(hold);
+      LM.setStopping(hold);
+      LB.setStopping(hold);
+      RF.setStopping(hold);
+      RM.setStopping(hold);
+      RB.setStopping(hold);
   while(true)
   {
+  
     EXIT=true;
     RV=Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
     LV=Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
@@ -316,21 +318,18 @@ int ATask(void)
     //pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
     if (Controller1.ButtonR1.pressing()==1)
     {
-      IntakeBoth(-100);
-      double Rpm = Roller.velocity(rpm);
-    if (Rpm<10)
-    {
-      RunSecondStage(100);
-    }
+      IntakeBoth(100);
+      
+    
     }
     
     else if (Controller1.ButtonL1.pressing()==1)
     {
-      IntakeBoth(100);
+      IntakeBoth(-100);
     }
     else if (Controller1.ButtonR2.pressing()==1)
     {
-      RunRoller(100);
+      RunBottom(100);
     }
     
     else
@@ -360,7 +359,7 @@ int PTask(void)
     {
       ButtonPressingX=1;
       XTaskActiv=1;
-      Tilt.set(true);
+      Scrapper.set(true);
     }
 
     else if(!Controller1.ButtonDown.pressing())ButtonPressingX=0;
@@ -369,7 +368,7 @@ int PTask(void)
     {
       ButtonPressingX=1;
       XTaskActiv=0;
-      Tilt.set(false);
+      Scrapper.set(false);
     }
     //----------------------
       //Toggles Clamp
@@ -377,7 +376,7 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=1;
-      Clamp.set(true);
+      Lift.set(true);
     }
 
     else if(!Controller1.ButtonUp.pressing())ButtonPressingY=0;
@@ -386,7 +385,7 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=0;
-      Clamp.set(false);
+      Lift.set(false);
     }
     
       //Toggles Pusher
@@ -505,10 +504,12 @@ int main() {
   pre_auton();
   
   
+  
 
   // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
+    ShowDis();
   }
 }
   
