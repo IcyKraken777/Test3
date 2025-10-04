@@ -6,6 +6,8 @@ extern int JB;
 extern int PB;
 extern int PX;
 extern int JX;
+extern double Avg;
+extern double Head;
 
 struct ChassisDataSet{
   int Left;
@@ -23,10 +25,11 @@ struct PIDDataSet{
 
 extern void Zeroing(bool dist, bool HDG);
 extern ChassisDataSet ChassisUpdate();
+extern void ShowDis();
 extern void Move(int left, int right);
 extern void BStop();
 extern void CStop();
-extern void RunRoller(int val);
+extern void RunBottom(int val);
 extern void RunIntake(int val1);
 extern void RunSecondStage(int val2);
 extern void IntakeBoth(int val3);
