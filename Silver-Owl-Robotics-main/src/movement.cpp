@@ -25,6 +25,11 @@ int JX;
  * @param dist the 
  * @param HDG the
  */
+int pY;
+int pX;
+double Avg;
+double Head;
+
 void Zeroing(bool dist, bool HDG)
 {
   if(dist){
@@ -48,8 +53,17 @@ ChassisDataSet ChassisUpdate()
   CDS.Avg=(CDS.Left+CDS.Right)/2;
   CDS.Diff=CDS.Left-CDS.Right;
   CDS.HDG=Gyro.heading(degrees);
+  Avg = CDS.Avg;
+  Head = CDS.HDG;
 
   return CDS;
+}
+void ShowDis()
+{
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Distance:",Avg);
+  Brain.Screen.setCursor(8,10);
+  Brain.Screen.print("Heading:",Head);
 }
 
 void Move(int left, int right)
@@ -106,11 +120,16 @@ RB.stop();
 
 
 
-void RunRoller(int val)
+void RunBottom(int val)
 {
-Roller.setMaxTorque(100,percent);
-Roller.spin(forward,(double)val/100.0*12,volt);
+BottomStage.setMaxTorque(100,percent);
+BottomStage.spin(forward,(double)val/100.0*12,volt);
 }
+//double Rpm = Roller.velocity(rpm);
+//if (Rpm<10)
+//{
+//  Roller.spin(forward,(double)-val/100.0*12,volt);
+//}
 void RunIntake(int val1)
 {
 //Intake.setMaxTorque(100,percent);
@@ -119,18 +138,22 @@ void RunIntake(int val1)
 void RunSecondStage(int val2)
 {
 SecondStage.setMaxTorque(100,percent);
-SecondStage.spin(forward,(double)val2/100.0*12,volt);
+SecondStage.spin(forward,(double)-val2/100.0*12,volt);
 }
 void IntakeBoth(int val3)
 {
  SecondStage.setMaxTorque(100,percent);
-SecondStage.spin(forward,(double)val3/100.0*12,volt);
-Roller.setMaxTorque(100,percent);
-Roller.spin(forward,(double)-val3/100.0*12,volt);
-
-
+SecondStage.spin(forward,(double)-val3/100.0*12,volt);
+BottomStage.setMaxTorque(100,percent);
+BottomStage.spin(forward,(double)val3/100.0*12,volt);
+/*if (Roller.velocity(rpm)<10)
+{
+  Roller.spin(forward,(double)val3/100.0*12,volt);
 }
 
+
+*/
+}
 int PrevE;//Error at t-1
 
 /** Moves the robot forward or backward. Negative speed moves
