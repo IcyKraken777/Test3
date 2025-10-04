@@ -13,54 +13,43 @@
 void nineleft() {
     // declare initial conditions
     //9ball assumption LEFT
-    PIDDataSet TestPara={1.5,0.1,0.22};
-    PIDDataSet AngPara={1.7,0.1,0.18};
-    //Collect 3 balls in L shape
-    Wings.set(true);
-    Lift.set(true);
-    RunSecondStage(50);
-    RunBottom(100);
-    //TurnMaxTimePID(AngPara, -30, 0.5, true);
-    MoveEncoderPID(TestPara, 70,20, 0.5,-29,true);
-    MoveEncoderPID(TestPara, 30,16, 0.1,-29,true);
-    wait(100,msec);
-    //Possiable movement change over here add the extra 2 balls. 
-    //Move and score like 4... May need to add a move back statment over here.
-    TurnMaxTimePID(AngPara, -135,0.3, true);
-    MoveEncoderPID(TestPara, 80,47, 0.5,-135,true);
-    MoveEncoderPID(TestPara, 60,4, 0.1,-133,true);
-    IntakeBoth(0);
-    TurnMaxTimePID(AngPara, 0,0.5, true);
-    MoveEncoderPID(TestPara, 80,28, 0.5,0,true);
-    Wings.set(false);
-    IntakeBoth(100);
-    wait(900,msec);
-    RunBottom(-100);
-    wait(100,msec);
-    RunBottom(100);
-    wait(1100,msec);
-    //Matchload
-    Wings.set(true);
-    MoveEncoderPID(TestPara, -100,15, 0.7,0,true);
-    TurnMaxTimePID(AngPara, 0,0.5, true);
-    Scrapper.set(true);
-    TurnMaxTimePID(AngPara, -184,0.3, true);
-    RunBottom(100);
-    MoveEncoderPID(TestPara, 60,28, 0.5,181,true);
-    wait(280,msec);
-    //Move back and score 3
-    MoveEncoderPID(TestPara, -90,15, 0.5,180,true);
-    IntakeBoth(40); 
-    Scrapper.set(false);
-    TurnMaxTimePID(AngPara, 0,0.8, true);
-    MoveEncoderPID(TestPara, 60,10, 0.2,3,true);
-    Wings.set(false);
-    IntakeBoth(100);
-    wait(2000,msec);
-    IntakeBoth(0);
-    MoveEncoderPID(TestPara, -100,25, 0.1,0,true);
-    MoveEncoderPID(TestPara, 100,25, 0.1,0,false);
-    //Gets back into supply so we can immediately start scoring
+PIDDataSet TestPara={1.1,0.03,0.31};
+PIDDataSet AngPara={1.5,0.1,0.13};
+RunSecondStage(20);
+RunBottom(100);
+MoveEncoderPID(TestPara, 80,2.5, 0.4,0,false);
+wait(200,msec);
+MoveEncoderPID(TestPara, 100,67.5, 0.1,72,true);
+wait(700,msec);
+//Addcodehere
+
+wait(200,msec);
+MoveEncoderPID(TestPara, -100,1.5, 0.1,45,false);
+Scrapper.set(false);
+MoveEncoderPID(TestPara, -100,7.5, 0.1,0,false);
+MoveEncoderPID(TestPara, -100,47, 0.1,-80,false);
+TurnMaxTimePID(AngPara, 0,0.5, true);
+Lift.set(true);
+wait(400,msec);
+MoveEncoderPID(TestPara, 100,14, 0.1,0,true);
+RunSecondStage(100);
+
+wait(1000,msec);
+RunSecondStage(17);
+RunBottom(100);
+MoveEncoderPID(TestPara, -100,11, 0.1,0,true);
+
+Scrapper.set(true);
+TurnMaxTimePID(AngPara, -175,0.5, true);
+MoveEncoderPID(TestPara, 70,18, 0.1,180,true);
+wait(670,msec);
+MoveEncoderPID(TestPara, -70,19, 0.1,180,true);
+Scrapper.set(false);
+TurnMaxTimePID(AngPara, 0,0.5, true);
+MoveEncoderPID(TestPara, 70,9, 0.1,0,true);
+wait(100,msec);
+RunSecondStage(100);
+
 }
 void nineright(){
     //9 Ball Right (Get the OG to work first)
@@ -132,6 +121,30 @@ void test4(){
 }
 void test5(){
 // Use this to tune PID values
+PIDDataSet TestPara={1.1,0.03,0.31};
+PIDDataSet AngPara={1.5,0.1,0.13};
+RunSecondStage(17);
+RunBottom(100);
+MoveEncoderPID(TestPara, 80,17, 0.4,31,true);
+wait(200,msec);
+Scrapper.set(true);
+MoveEncoderPID(TestPara, 100,14, 0.1,29,true);
+wait(100,msec);
+TurnMaxTimePID(AngPara, 135,0.3, true);
+MoveEncoderPID(TestPara, 100,39.5, 0.1,135,true);
+wait(100,msec);
+TurnMaxTimePID(AngPara, 180,0.5, true);
+MoveEncoderPID(TestPara, 70,25, 0.1,180,true);
+wait(670,msec);
+MoveEncoderPID(TestPara, -70,19, 0.1,180,true);
+Scrapper.set(false);
+TurnMaxTimePID(AngPara, 0,0.5, true);
+MoveEncoderPID(TestPara, 70,11, 0.1,0,true);
+wait(100,msec);
+RunSecondStage(100);
+
+//MoveEncoderPID(TestPara, -100,24, 0.1,0,true);
+//wait(500, msec);
 
 }
 
