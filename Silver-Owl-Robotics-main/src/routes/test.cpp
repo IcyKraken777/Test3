@@ -53,16 +53,42 @@ RunSecondStage(100);
 }
 void nineright(){
     //9 Ball Right (Get the OG to work first)
-    PIDDataSet TestPara={1.6,0.1,0.2};
-    PIDDataSet AngPara={1.7,0.1,0.18};
-    Wings.set(false);
-    //Tilt.set(true);
-    RunBottom(100);
-    //intake the 3
-    //TurnMaxTimePID(AngPara, -30, 0.5, true);
-    MoveEncoderPID(TestPara, 65,24, 0.5,28,true);
-    MoveEncoderPID(TestPara, 30,15, 0.5,30,true);
-    
+    PIDDataSet TestPara={1.7,0.03,0.31};
+PIDDataSet AngPara={1.5,0.1,0.13};
+RunSecondStage(-40);
+RunBottom(100);
+MoveEncoderPID(TestPara, 80,4, 0.4,0,true);//go toward 3 balls
+wait(200,msec);
+TurnMaxTimePID(AngPara, 25,0.2, true);
+MoveEncoderPID(TestPara, 40,24, 0.1,25,true);//curve towards long goal
+Scrapper.set(true);
+wait(200,msec);
+//MoveEncoderPID(TestPara, 20,12, 0.1,-5,true);//curve towards 2 balls
+//wait(10000,msec);
+
+
+//Addcodehere
+
+
+TurnMaxTimePID(AngPara, 150,0.2, true);//turn to goal
+RunBottom(0);
+
+
+MoveEncoderPID(TestPara, 100,40, 0.4,150,true);//back up from center
+TurnMaxTimePID(AngPara, 180,0.2, true);
+MoveEncoderPID(TestPara, 100,25, 0.2,180,true);//back up towards scoring area
+RunBottom(100);
+wait(500,msec);
+//TurnMaxTimePID(AngPara, 0,0.2, true);
+MoveEncoderPID(TestPara,-100,50, 0.1,180,true);
+RunSecondStage(100);
+wait(1200,msec);
+MoveEncoderPID(TestPara,50,10, 0.1,180,true);
+MoveEncoderPID(TestPara,-50,10, 0.1,-25,true);
+MoveEncoderPID(TestPara,50,20, 0.1,180,true);
+MoveEncoderPID(TestPara,-50,20, 0.1,180,true);
+
+   
 }
 void AWP(){
     // declare initial conditions
